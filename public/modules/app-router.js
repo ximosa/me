@@ -18,6 +18,7 @@ anandmoghan.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
 
 	$stateProvider.state('blog', {
 		url:'/blog',
+		abstract:true,
 		templateUrl: '/modules/blog/blog-console.html',
 		controller: 'BlogController'
 	});

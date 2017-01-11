@@ -1,7 +1,7 @@
 'use strict'
 var anandmoghan = angular.module('anandmoghan', ['ui.router', 'ngAnimate', 'ngMaterial', 'restangular', 'anandmoghan.modules']);
 
-anandmoghan.modules = angular.module('anandmoghan.modules', ['anandmoghan.common', 'anandmoghan.widgets'])
+anandmoghan.modules = angular.module('anandmoghan.modules', ['anandmoghan.blog', 'anandmoghan.common', 'anandmoghan.widgets'])
 
 anandmoghan.globals = {
 	image: {
