@@ -23,6 +23,12 @@ anandmoghan.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
 		controller: 'BlogController'
 	});
 
+	$stateProvider.state('contact', {
+		url:'/contact',
+		templateUrl: '/modules/welcome.html',
+		controller: 'HomeController'
+	});
+
 	$locationProvider.html5Mode(true);
 	$urlRouterProvider.when('','/');
 }]);

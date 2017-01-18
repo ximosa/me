@@ -304,6 +304,9 @@ a:focus, button:focus, md-icon:focus, :focus {
 .border-white {
   border-color: white;
 }
+.border-grey {
+  border-color: #757575;/*grey*/
+}
 .text-white {
 	color: white;
 }

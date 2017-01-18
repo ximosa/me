@@ -1,10 +1,20 @@
 anandmoghan.controller('MainController', ['$scope', '$state',  '$rootScope', '$http', '$window', '$location', '$mdSidenav', function($scope, $state, $rootScope, $http, $window, $location, $mdSidenav){
+  	$('.button-collapse').sideNav({
+  			menuWidth: 270,
+	      	edge: 'left',
+	      	closeOnClick: true,
+	      	draggable: true
+	    }
+	  );
+
 	anandmoghan.globals.isLive = $location.host() == 'anandmoghan.me';
 	
 	$scope.globals = {
 		image: angular.copy(anandmoghan.globals.image),
 		loader: angular.copy(anandmoghan.globals.loader)
 	}
+	$scope.tabs = angular.copy(anandmoghan.constants.tabs);
+	$scope.current_tab = 'home';
 
 	$rootScope.user_data = {};
 
@@ -63,4 +73,5 @@ anandmoghan.controller('HomeController', ['$scope', '$state', '$stateParams', '$
 	$('.body-container').animate({scrollTop : 0}, 800);
 
 	$rootScope.bck_image = "connected.jpg";
+	$scope.$parent.current_tab = 'home';
 }]);

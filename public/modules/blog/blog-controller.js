@@ -5,6 +5,7 @@ anandmoghan.blog.controller('BlogController', ['$scope', '$state', '$stateParams
 	$('.body-container').animate({scrollTop : 0}, 800);
 
 	$rootScope.bck_image = "brush.jpg";
+	$scope.$parent.current_tab = 'blog.home';
 }]);
 
 anandmoghan.blog.controller('BlogHomeController', ['$scope', '$state', '$stateParams', '$rootScope', function($scope, $state, $stateParams, $rootScope){
