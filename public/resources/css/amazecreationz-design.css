@@ -16,9 +16,10 @@ a {
   color: #000;
   font-weight: bold;
 }
-a:hover {
+a:hover, a:focus {
   text-decoration: none!important;
-  font-weight: bolder;
+  font-weight: bolder!important;
+  color: #000;
 }
 a:focus, button:focus, md-icon:focus, :focus {
   outline: none!important;
@@ -49,10 +50,66 @@ a:focus, button:focus, md-icon:focus, :focus {
 }
 /*Special Classes End*/
 
+/*Custom Scrollbar Classes Start*/
+/*.body-container::-webkit-scrollbar {
+  width: 10px;
+}
+ 
+.body-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+.body-container::-webkit-scrollbar-thumb {
+  background-color: #BDBDBD;
+	border: 1px solid #4DB6AC;
+  border-radius: 5px;
+}*/
+/*Custom Scrollbar Classes End*/
 
+/*Container Classes Start*/
+.full-container {
+  width: 100%;
+  padding: 0;
+}
+
+.section-img-container, .img-strip-container {
+  display: table;
+  position: relative;
+  width: 100%;
+}
+.section-img-container {
+  height: 60vh;
+}
+.img-strip-container {
+  height: 200px;
+}
+.chart-container {
+  height: 250px!important;
+}
+/*Container Classes End*/
 
 
 /*General Classes Start*/
+.bg-body-color {
+  background-color: #FAFAFA!important;
+}
+.bg-body-color, .bg-body-color .material-icons {
+  color: #888!important;
+}
+.bg-transparent {
+  background-color: transparent!important;
+}
+.bg-white {
+  background-color: #fff!important;
+}
+.bg-blur {
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  filter: blur(5px);
+}
 .auto-height {
   height: auto!important;
 }
@@ -128,6 +185,10 @@ a:focus, button:focus, md-icon:focus, :focus {
 .padtb0 {
   padding-top: 0px!important;
   padding-bottom: 0px!important;
+}
+.padtb10 {
+  padding-top: 10px!important;
+  padding-bottom: 10px!important;
 }
 .mrg0 {
   margin: 0px!important;
@@ -305,10 +366,13 @@ a:focus, button:focus, md-icon:focus, :focus {
   border-color: white;
 }
 .border-grey {
-  border-color: #757575;/*grey*/
+  border-color: #424242;/*grey*/
 }
 .text-white {
 	color: white;
+}
+.text-dark {
+  color: #333!important;
 }
 .text-blue {
   color: #337ab7;/*blue*/
@@ -317,7 +381,7 @@ a:focus, button:focus, md-icon:focus, :focus {
   color: #d9534f;/*red*/
 }
 .text-grey {
-  color: #757575;/*grey*/
+  color: #424242;/*grey*/
 }
 .text-black {
   color: #000;/*black*/
@@ -388,7 +452,7 @@ a:focus, button:focus, md-icon:focus, :focus {
     font-size: 30px!important;
   }
   .text-size-d {
-    font-size: 28px!important;
+    font-size: 26px!important;
   }
 }
 @media (min-width: 1200px) {
@@ -407,7 +471,7 @@ a:focus, button:focus, md-icon:focus, :focus {
     font-size: 32px!important;
   }
   .text-size-d {
-    font-size: 30px!important;
+    font-size: 28px!important;
   }
 }
 .word-wrap {
@@ -426,7 +490,7 @@ a:focus, button:focus, md-icon:focus, :focus {
   background-color: #337ab7!important;/*blue*/
 }
 .img-box-grey, .btn-grey, .btn-grey-sm, .bg-grey {
-  background-color: #616161!important;/*grey*/
+  background-color: #424242!important;/*grey*/
 }
 .img-box-yellow, .btn-yellow, .btn-yellow-sm, .bg-yellow, .jumbotron {
   background-color: #CDDC39!important;/*yellow*/

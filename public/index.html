@@ -18,6 +18,7 @@
         <link rel="stylesheet" type="text/css" href="resources/css/pt-sans.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
         <link rel="stylesheet" type="text/css" href="resources/css/amazecreationz-design.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/amazecreationz-design-blog.css">
     <!--CSS INCLUDES END-->
     <!--JS INCLUDES START-->
         <script type="text/javascript" src="resources/js/angular.min.js"></script>
@@ -25,6 +26,7 @@
         <script type="text/javascript" src="resources/js/angular-animate.min.js"></script>
         <script type="text/javascript" src="resources/js/angular-messages.min.js"></script>
         <script type="text/javascript" src="resources/js/angular-material.min.js"></script>
+        <script type="text/javascript" src="resources/js/angular-sanitize.min.js"></script>
         <script type="text/javascript" src="resources/js/jquery.min.js"></script>
         <script type="text/javascript" src="resources/js/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
@@ -40,6 +42,7 @@
         <script type="text/javascript" src="modules/blog/blog-controller.js"></script>
         <script type="text/javascript" src="modules/common/common-controller.js"></script>
         <script type="text/javascript" src="modules/common/common-directives.js"></script>
+        <script type="text/javascript" src="modules/contact/contact-controller.js"></script>
         <script type="text/javascript" src="modules/login/login-controller.js"></script>
         <script type="text/javascript" src="modules/widgets/widget-directives.js"></script>
         <script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>
@@ -98,10 +101,10 @@
                     <div class="text-white email txt14">{{user_data.email}}</div>
                 </div>
             </li>
-            <li ng-repeat="tab in tabs" ng-class="{'active' : current_tab == tab.state}">
+            <li ng-repeat="tab in tabs" ng-class="{'active' : current_tab == tab.id}">
                 <a class="padlr20 pointer" ui-sref="{{tab.state}}">
-                    <md-icon class="material-icons">{{tab.icon}}</md-icon>
-                    <span class="padlr10">{{tab.name}}</span>
+                    <md-icon class="material-icons txt20">{{tab.icon}}</md-icon>
+                    <span class="padlr10 txt16">{{tab.name}}</span>
                 </a>
             </li>
         </ul>

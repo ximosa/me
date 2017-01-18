@@ -4,8 +4,8 @@ anandmoghan.controller('MainController', ['$scope', '$state',  '$rootScope', '$h
 	      	edge: 'left',
 	      	closeOnClick: true,
 	      	draggable: true
-	    }
-	  );
+		}
+	);
 
 	anandmoghan.globals.isLive = $location.host() == 'anandmoghan.me';
 	

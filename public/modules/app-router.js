@@ -25,8 +25,8 @@ anandmoghan.config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
 
 	$stateProvider.state('contact', {
 		url:'/contact',
-		templateUrl: '/modules/welcome.html',
-		controller: 'HomeController'
+		templateUrl: '/modules/contact/contact.html',
+		controller: 'ContactController'
 	});
 
 	$locationProvider.html5Mode(true);

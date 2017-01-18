@@ -1,5 +1,5 @@
 'use strict'
-var anandmoghan = angular.module('anandmoghan', ['ui.router', 'ngAnimate', 'ngMaterial', 'restangular', 'anandmoghan.modules']);
+var anandmoghan = angular.module('anandmoghan', ['ui.router', 'ngAnimate', 'ngMaterial', 'ngSanitize', 'restangular', 'anandmoghan.modules']);
 
 anandmoghan.modules = angular.module('anandmoghan.modules', ['anandmoghan.blog', 'anandmoghan.common', 'anandmoghan.widgets'])
 

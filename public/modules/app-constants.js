@@ -1,16 +1,16 @@
 anandmoghan.constants = {
 	tabs:[{
-		id: 0,
+		id: 'home',
 		name:'Home',
 		icon: 'home',
 		state: 'home'
 	},{
-		id: 1,
+		id: 'blog',
 		name:'Blog',
 		icon: 'book',
 		state: 'blog.home',
 	},{
-		id: 2,
+		id: 'contact',
 		name:'Contact Me',
 		icon: 'contacts',
 		state: 'contact'

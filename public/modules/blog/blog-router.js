@@ -8,8 +8,14 @@ anandmoghan.blog.config(['$stateProvider', '$urlRouterProvider', function($state
 		controller: 'BlogHomeController'
 	});
 
+	$stateProvider.state('blog.new', {
+		url:'/new',
+		templateUrl: '/modules/blog/blog-edit.html',
+		controller: 'BlogNewController'
+	});
+
 	$stateProvider.state('blog.edit', {
-		url:'/edit',
+		url:'/edit/:postid',
 		templateUrl: '/modules/blog/blog-edit.html',
 		controller: 'BlogEditController'
 	});
