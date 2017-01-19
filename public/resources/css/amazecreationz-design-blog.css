@@ -2,7 +2,7 @@
     padding: 10px;
 }
 
-.post-header, .post-content, .post-footer {
+.post-header, .post-content, .post-view-content, .post-footer {
     width: 100%;
 }
 
@@ -14,6 +14,12 @@
 
 .post-content {
     min-height: 100px;
+    max-height: 150px;
+    padding: 10px 5px;
+}
+
+.post-view-content {
+    min-height: 50vh;
     padding: 10px 5px;
 }
 

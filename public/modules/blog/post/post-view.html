@@ -1,0 +1,13 @@
+<md-content ng-if="!showLoader" flex="auto" class="md-whiteframe-4dp col-xs-12 pad20 mrgbot20" layout="column" layout-align="start start">
+	<div class="post-header text-size-d">
+        {{post.title}}
+		<span class="pull-right pointer text-grey txt20" ui-sref="blog.post.edit({postid:'{{post.id}}'})"><md-icon class="material-icons">edit</md-icon></span>
+	</div>
+	<div class="post-view-content" ng-bind-html="post.content"></div>
+	<div class="post-footer">
+		<span class="pull-right txt14 text-grey padlr5">Last Modified: {{post.last_modified | date :'mediumDate'}}</span>
+	</div>
+</md-content>
+<div ng-if="showLoader" class="col-xs-12 mrg20" layout="row" layout-align="space-around">
+	<md-progress-circular md-mode="indeterminate" class="md-hue-2"></md-progress-circular>
+</div>

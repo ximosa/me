@@ -3,6 +3,19 @@ var anandmoghan = angular.module('anandmoghan', ['ui.router', 'ngAnimate', 'ngMa
 
 anandmoghan.modules = angular.module('anandmoghan.modules', ['anandmoghan.blog', 'anandmoghan.common', 'anandmoghan.widgets'])
 
+anandmoghan.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+	.primaryPalette('grey', {
+		'default': '800',
+      	'hue-1': '300',
+      	'hue-2': '700',
+      	'hue-3': '900'
+	})
+	.accentPalette('grey', {
+		'default': '200'
+	});
+});
+
 anandmoghan.globals = {
 	image: {
 		root_url: '/resources/images/',

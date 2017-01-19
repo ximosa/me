@@ -1,0 +1,18 @@
+<style>
+    .menu-container {
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+    }
+    .menu-item {
+        padding: 10px;
+    }
+    .menu-item.active {
+        font-weight: bold;
+        border-bottom: 2px solid #000;
+    }
+</style>
+<div class="menu-container" layout="row" layout-align="start start">
+    <div class="menu-item" ng-repeat="item in items" ng-class="{'active': itemSelected == item.id}" ng-click="function(item.id)">
+        {{item.name}}
+    </div>
+</div>

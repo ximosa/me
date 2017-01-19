@@ -42,6 +42,29 @@ anandmoghan.widgets.directive('loader', [function() {
 }]);
 
 
+/*
+widget: Menu Bar
+items: Items for Menu {
+	name: Name to be displayed.
+	id: id of the item to call the changeFunction
+}
+itemSelected: selected menu item;
+changeFunction: The function in the ctrl to be called for change in menu item.
+*/
+anandmoghan.widgets.directive('menuBar', ['$state', function($state) {
+	return {
+		restrict:'E',
+		scope: {
+			items: '=',
+			itemSelected: '=',
+			function: '='
+		},
+		templateUrl: '/modules/widgets/menu-bar.html',
+		link: function (scope, elements, attributes) {
+		}
+	}
+}]);
+
 
 /*
 widget: Application Card

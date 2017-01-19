@@ -2,15 +2,15 @@
 	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 pad0" layout="column" layout-align="start center">
 		<md-content ng-if="!showLoader" flex="auto" ng-repeat="(postid, post) in posts" class="md-whiteframe-4dp col-xs-12 pad20 mrgbot20" layout="column" layout-align="start start">
 			<div class="post-header text-size-d">{{post.title}}
-				<span class="pull-right pointer text-grey txt20" ui-sref="blog.edit({postid:'{{postid}}'})"><md-icon class="material-icons">edit</md-icon></span>
+				<span class="pull-right pointer text-grey txt20" ui-sref="blog.post.edit({blogid:'general', postid:'{{postid}}'})"><md-icon class="material-icons">edit</md-icon></span>
 			</div>
 			<div class="post-content" ng-bind-html="post.content"></div>
 			<div class="post-footer">
 				<span class="pull-right txt14 text-grey padlr5">Last Modified: {{post.last_modified | date :'mediumDate'}}</span>
 			</div>
 		</md-content>
-		<div ng-if="showLoader" class="mrg20" layout="row" layout-align="space-around">
-		    <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+		<div ng-if="showLoader" class="col-xs-12 mrg20" layout="row" layout-align="space-around">
+			<md-progress-circular md-mode="indeterminate" class="md-hue-2"></md-progress-circular>
 		</div>
 	</div>
 </div>

@@ -67,7 +67,6 @@ anandmoghan.controller('MainController', ['$scope', '$state',  '$rootScope', '$h
 }]);
 
 anandmoghan.controller('HomeController', ['$scope', '$state', '$stateParams', '$rootScope', function($scope, $state, $stateParams, $rootScope){
-	console.log("HomeController");
 	$(window).resize();
 	$('title').html("Anand Mohan | Home");
 	$('.body-container').animate({scrollTop : 0}, 800);
