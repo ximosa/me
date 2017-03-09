@@ -1,0 +1,29 @@
+<div ng-if="blog.posts | isEmpty" class="blog-loader" layout="row" layout-align="space-around">
+	<md-progress-circular md-mode="indeterminate" class="md-hue-2"></md-progress-circular>
+</div>
+<div ng-if="!(blog.posts | isEmpty)" class="blog-posts-container">
+	<md-content class="blog-post-container blog-cursor-pointer md-whiteframe-2dp" ng-repeat="post in blog.posts | category:blog.category | orderObjectBy:'last_modified' : true" ui-sref="blog.post({category: post.category, id: post.id})">
+		<div class="blog-post-header">{{post.title}}</div>
+		<div class="blog-post-desc">{{post.description}}</div>
+		<div class="blog-post-footer">
+			<div class="blog-post-details" layout="column" layout-align="start start">
+				<div class="blog-post-authors">
+					Authored By: <span ng-repeat="(key,author) in post.authors">
+						<span ng-if="!$first && !$last">|</span>
+						<span ng-if="!$first && $last"> and </span>
+						<span class="blog-post-author">{{author}}</span>
+					</span>
+				</div>
+				<div class="blog-post-time">
+					Last Modified: {{post.last_modified | date: blog.dateFormat}}
+				</div>
+				<div ng-if="post.tags" class="blog-post-tags">
+					<blog-tags tags="post.tags" function="blog.viewTaggedPosts" theme="blog.theme"></blog-tags>
+				</div>
+			</div>
+		</div>
+	</md-content>
+	<div class="no-items blog-pad-10">
+		No posts in this category yet.
+	</div>
+</div>	

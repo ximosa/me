@@ -9,11 +9,11 @@
         <meta name="keywords" content="Anand Mohan, anandmoghan, moghan">
         <meta name="author" content="Anand Mohan">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <link rel="SHORTCUT ICON" href="resources/images/favicon.ico">
+        <link rel="SHORTCUT ICON" href="resources/images/logos/favicon.ico">
     <!--CSS INCLUDES START-->
         <link rel="stylesheet" type="text/css" href="resources/css/angular-material.min.css">
         <link rel="stylesheet" type="text/css" href="resources/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="resources/css/materialize.min.css">
+
         <link rel="stylesheet" type="text/css" href="resources/css/material-icons.css">
         <link rel="stylesheet" type="text/css" href="resources/css/pt-sans.css">
         <link rel="stylesheet" type="text/css" href="resources/css/style.css">
@@ -31,18 +31,14 @@
         <script type="text/javascript" src="resources/js/angular-ui-router.min.js"></script>
         <script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="resources/js/restangular.min.js"></script>
-        <script type="text/javascript" src="resources/js/materialize.min.js"></script>
         <script type="text/javascript" src="resources/js/underscore-min.js"></script>
         <script type="text/javascript" src="resources/js/event-listeners.js"></script>
         <script type="text/javascript" src="modules/app.js"></script>
         <script type="text/javascript" src="modules/app-router.js"></script>
         <script type="text/javascript" src="modules/app-controller.js"></script>
         <script type="text/javascript" src="modules/app-constants.js"></script>
-        <script type="text/javascript" src="modules/blog/blog-router.js"></script>
-        <script type="text/javascript" src="modules/blog/blog-controller.js"></script>
-        <script type="text/javascript" src="modules/blog/post/post-controller.js"></script>
+        <script type="text/javascript" src="modules/blog/amazecreationz-blog.min.js"></script>
         <script type="text/javascript" src="modules/common/common-controller.js"></script>
-        <script type="text/javascript" src="modules/common/common-directives.js"></script>
         <script type="text/javascript" src="modules/contact/contact-controller.js"></script>
         <script type="text/javascript" src="modules/login/login-controller.js"></script>
         <script type="text/javascript" src="modules/widgets/widget-directives.js"></script>
@@ -60,57 +56,37 @@
     <!--JS INCLUDES END-->
     </head>
     <body ng-controller="MainController" ng-app="anandmoghan">
-        <div class="navbar-fixed" style="height: 50px">
-            <nav class="box-shadow bg-grey no-shadow" style="height: inherit">
-                <div class="nav-wrapper" layout="row" layout-align="end center">
-                    <div class="text-white pointer button-collapse" data-activates="slide-out"><i class="material-icons text-size-d">menu</i></div>
-                    <div flex="auto" id="brand-name" class="text-size-d text-uppercase text-white">
-                        <span class="pointer" ui-sref="home">Anand Mohan</span>
-                    </div>
-                    <div class="padlr20">
-                        <md-icon ng-if="!user_data.is_user_signed" class="material-icons text-white pointer txt24" ng-click="login()">account_circle</md-icon>
-                        <span ng-show="user_data.is_user_signed" class="dropdown-button pointer" data-beloworigin="true" data-constrainwidth="false" data-activates="login-dd"><img class="circle" width="24px" height="auto" ng-src="{{user_data.image}}"></span>
-                        <div id='login-dd' class='dropdown-content pad10 z-depth-3 mrgtop25'>
-                            <div class="account-container" layout="row" layout-align="start center">
-                                <div class="pad15 vertical-divider" layout="row" layout-align="center center">
-                                    <img class="circle" width="80px" height="auto" ng-src="{{user_data.image}}">
-                                </div>
-                                <div class="account-details" layout="column" layout-align="start start">
-                                    <div class="mrg0">{{user_data.name}}</div>
-                                    <div class="txt14 mrg0 text-grey">{{user_data.email}}</div>
-                                    <div class="mrgl-10" layout="row" layout-align="start start">
-                                        <md-button ng-show="user_data.is_user_signed" id="my-signout2" class="mrglr10 md-warn md-raised md-hue-2 pointer" ng-click="signOut();">SIGN OUT</md-button>                            
-                                    </div>
-                                </div>
-                            </div>
-                            
-                        </div>
-                            
-                    </div>
+        <nav class="box-shadow no-shadow" ng-class="'bg-{{globals.theme}}'">
+            <div class="nav-wrapper" layout="row" layout-align="end center">
+                <div class="nav-menu-button" ng-click="openSideMenu()"><md-icon class="material-icons text-size-d">menu</md-icon></div>
+                <div flex="auto" class="nav-brand-name text-size-d text-uppercase">
+                    <span class="pointer" ui-sref="home">Anand Mohan</span>
                 </div>
-            </nav>
-        </div>
-        <ul id="slide-out" class="side-nav">
-            <li>
-                <div class="side-nav-user-container bg-grey" layout="column" layout-align="end start">
-                    <div class="padbot10">
-                        <img ng-if="user_data.is_user_signed" class="circle"  width="60px" height="auto" ng-src="{{user_data.image}}">
-                        <md-icon ng-if="!user_data.is_user_signed" class="material-icons text-white txt48">account_circle</md-icon>
-                    </div>
-                    <div ng-if="!user_data.is_user_signed" class="text-white txt16">Hello Guest!</div>
-                    <div class="text-white txt16 text-bold">{{user_data.name}}</div>
-                    <div class="text-white email txt14">{{user_data.email}}</div>
+            </div>
+        </nav>
+        <md-sidenav class="md-sidenav-left" md-component-id="side-menu" md-whiteframe="4" md-swipe-left="closeSideMenu()" layout="column">
+            <div class="side-menu-user-container" ng-class="'bg-{{globals.theme}}'" layout="column" layout-align="end start">
+                <div class="padbot10">
+                    <img ng-if="globals.permissions.USER >= user_data.permission" class="img-circle"  width="60px" height="auto" ng-src="{{user_data.image}}">
+                    <md-icon ng-if="globals.permissions.USER < user_data.permission" class="material-icons txt48">account_circle</md-icon>
                 </div>
-            </li>
-            <li ng-repeat="tab in tabs" ng-class="{'active' : current_tab == tab.id}">
-                <a class="padlr20 pointer" ui-sref="{{tab.state}}">
+                <div ng-if="globals.permissions.USER < user_data.permission" class="txt16">Hello Guest!</div>
+                <div class="txt16 text-bold">{{user_data.name}}</div>
+                <div class="txt14">{{user_data.email}}</div>
+                <span ng-show="globals.permissions.USER >= user_data.permission" class="pointer txt12" ng-click="signOut();">Sign Out</span>
+            </div>
+            <div class="side-menu-tabs-container" flex="auto">
+                <div class="side-menu-tab" ng-if="tab.permission >= user_data.permission" ng-repeat="tab in tabs" ng-class="{'active' : current_tab == tab.id}" ng-click="openTab(tab)">
                     <md-icon class="material-icons txt20">{{tab.icon}}</md-icon>
                     <span class="padlr10 txt16">{{tab.name}}</span>
-                </a>
-            </li>
-        </ul>
-        <div class="body-container bg-fixed bg-tinted" bg-load image="bck_image">
-            <div ui-view class="main-container"></div>          
+                </div>
+            </div>
+            <div class="side-menu-footer">
+                <md-button ng-show="globals.permissions.USER < user_data.permission" id="my-login" class="md-raised side-menu-button" ng-click="login();"><img class="mrgrt20" height="24px" width="auto" src="/resources/images/icons/google.png"/>Sign in with Google</md-button>
+            </div>
+        </md-sidenav>
+        <div class="body-container bg-fixed bg-tinted" bg-load image="bck_image" md-swipe-right="openSideMenu()">
+            <div ui-view class="main-container"></div>         
         </div>           
     </body>
 </html>

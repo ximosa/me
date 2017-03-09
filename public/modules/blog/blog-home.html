@@ -1,16 +1,37 @@
-<div class="section-container">
-	<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 pad0" layout="column" layout-align="start center">
-		<md-content ng-if="!showLoader" flex="auto" ng-repeat="(postid, post) in posts" class="md-whiteframe-4dp col-xs-12 pad20 mrgbot20" layout="column" layout-align="start start">
-			<div class="post-header text-size-d">{{post.title}}
-				<span class="pull-right pointer text-grey txt20" ui-sref="blog.post.edit({blogid:'general', postid:'{{postid}}'})"><md-icon class="material-icons">edit</md-icon></span>
-			</div>
-			<div class="post-content" ng-bind-html="post.content"></div>
-			<div class="post-footer">
-				<span class="pull-right txt14 text-grey padlr5">Last Modified: {{post.last_modified | date :'mediumDate'}}</span>
-			</div>
-		</md-content>
-		<div ng-if="showLoader" class="col-xs-12 mrg20" layout="row" layout-align="space-around">
-			<md-progress-circular md-mode="indeterminate" class="md-hue-2"></md-progress-circular>
+<div md-theme="blog" class="blog-container blog-bg-color" layout="column" layout-align="start center">
+	<div class="blog-header md-whiteframe-2dp" ng-class="'bg-{{blog.theme}}'" layout="row" layout-align="start center">
+		<div flex>
+			<span class="blog-cursor-pointer" ui-sref="blog.allposts({category: blog.default_category})">{{blog.name}}</span> > 
+			<md-input-container style="margin: 0 0 3px">
+		      	<md-select ng-model="blog.category" ng-change="blog.changeCategory(blog.category)" aria-label="Category Select">
+		        	<md-option ng-repeat="category in blog.categories" ng-value="category.id">
+		        		{{category.name}}
+		        	</md-option>
+		      	</md-select>
+		    </md-input-container>
+	    </div>
+	    <md-menu ng-show="blog.menu && blog.permissions.USER >= blog.user.permission" md-position-mode="target-right target" md-offset="0 10">
+            <md-button class="md-icon-button pad0 mrg0" ng-click="$mdOpenMenu()">
+                <md-icon class="material-icons txt24" ng-class="'blog-text-light-{{blog.theme}}'">more_vert</md-icon>
+            </md-button>
+            <md-menu-content width="4">
+                <md-menu-item ng-if="menuItem.show" ng-repeat="(key,menuItem) in blog.menu">
+                    <md-button class="txt18 padlr10" ng-click="blog.menuAction(menuItem.function)">
+                        <md-icon class="material-icons txt20">{{menuItem.icon}}</md-icon>{{menuItem.name}}
+                    </md-button>
+                </md-menu-item>
+            </md-menu-content>
+        </md-menu>
+	</div>
+	<div layout="row" layout-align="start start" layout-fill>
+		<div class="blog-view-container" flex="auto" flex-xs="100" ui-view></div>
+		<div ng-if="blog.showSideBar" flex="33" class="blog-side-container" hide-xs>
+			<md-content class="blog-side-entry-container md-whiteframe-2dp">
+				Recent Posts:
+			</md-content>
+			<md-content class="blog-side-entry-container md-whiteframe-2dp">
+				Most Visited Posts:
+			</md-content>
 		</div>
 	</div>
 </div>

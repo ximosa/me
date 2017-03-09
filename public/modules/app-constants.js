@@ -2,52 +2,26 @@ anandmoghan.constants = {
 	tabs:[{
 		id: 'home',
 		name:'Home',
+		title: 'Anand Mohan | Home',
+		bck_image: 'home.jpg',
 		icon: 'home',
-		state: 'home'
+		state: 'home',
+		permission: permissions.VISITOR
 	},{
 		id: 'blog',
 		name:'Blog',
+		title: 'Anand Mohan | Blog',
+		bck_image: '',
 		icon: 'book',
-		state: 'blog.home',
+		state: 'blog.allposts',
+		permission: permissions.VISITOR
 	},{
 		id: 'contact',
 		name:'Contact Me',
+		title: 'Contact Me',
+		bck_image: 'crew.jpg',
 		icon: 'contacts',
-		state: 'contact'
-	}],
-	albert: {
-		teach: {
-			types: [{
-				key: 'CONVO',
-				name: 'Conversations'
-			},{
-				key: 'QN',
-				name: 'Questions'
-			},{
-				key: 'CMD',
-				name: 'Commands'
-			}],
-			actions: [{
-				key: 'NONE',
-				name: 'None',
-				param_1: 'User\'s Query',
-				param_2: 'Albert\'s Response'
-			},{
-				key: 'LINK',
-				name: 'Link Responses',
-				param_1: 'Parent Response',
-				param_2: 'New Response'
-			},{
-				key: 'RM',
-				name: 'Delete',
-				param_1: 'Query',
-				param_2: false
-			},{
-				key: 'CUSTOM',
-				name: 'Custom Action',
-				param_1: 'Param 1',
-				param_2: 'Param 2'
-			}]
-		}
-	}
+		state: 'contact',
+		permission: permissions.VISITOR
+	}]
 }

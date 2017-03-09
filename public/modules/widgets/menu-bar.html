@@ -3,12 +3,22 @@
         width: 100%;
         border-bottom: 1px solid #ccc;
     }
+    .menu-container.sticky {
+        background: white;
+        position: fixed;
+        z-index: 997;
+        top:0px;
+        left: 0px;
+        padding: 0px 10px;
+        border-bottom: none;
+    }
     .menu-item {
         padding: 10px;
     }
     .menu-item.active {
         font-weight: bold;
         border-bottom: 2px solid #000;
+        color: #000;
     }
 </style>
 <div class="menu-container" layout="row" layout-align="start start">

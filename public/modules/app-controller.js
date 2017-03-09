@@ -1,35 +1,73 @@
-anandmoghan.controller('MainController', ['$scope', '$state',  '$rootScope', '$http', '$window', '$location', '$mdSidenav', function($scope, $state, $rootScope, $http, $window, $location, $mdSidenav){
-  	$('.button-collapse').sideNav({
+anandmoghan.controller('MainController', ['$scope', '$state', '$stateParams', '$rootScope', '$window', '$location', '$mdSidenav', '$mdToast', function($scope, $state, $stateParams, $rootScope, $window, $location, $mdSidenav, $mdToast){
+  	/*$('.button-collapse').sideNav({
   			menuWidth: 270,
 	      	edge: 'left',
 	      	closeOnClick: true,
 	      	draggable: true
 		}
-	);
+	);*/
 
 	anandmoghan.globals.isLive = $location.host() == 'anandmoghan.me';
 	
 	$scope.globals = {
 		image: angular.copy(anandmoghan.globals.image),
-		loader: angular.copy(anandmoghan.globals.loader)
+		theme: angular.copy(anandmoghan.globals.theme),
+		permissions: angular.copy(permissions)
 	}
-	$scope.tabs = angular.copy(anandmoghan.constants.tabs);
-	$scope.current_tab = 'home';
 
-	$rootScope.user_data = {};
+	$rootScope.user_data = {
+		permission: permissions.VISITOR
+	};
+
+	$scope.openSideMenu = function() {
+		$mdSidenav('side-menu').open();
+	}
+
+	$scope.closeSideMenu = function() {
+		$mdSidenav('side-menu').close();
+	}
+
+	$scope.openTab = function(tab) {
+		$mdSidenav('side-menu').close();
+		$scope.current_tab = tab.id;
+		$state.go(tab.state)
+	}
 
 	$scope.login = function() {
-    	$state.go('login', {redirect: $state.current.name});
+		$mdSidenav('side-menu').close();
+		var provider = new firebase.auth.GoogleAuthProvider();
+		provider.addScope('https://www.googleapis.com/auth/userinfo.profile');
+		firebase.auth().signInWithPopup(provider);
     }
 
 	$scope.signOut = function() {
+		$mdSidenav('side-menu').close();
 		firebase.auth().signOut().then(function() {
-			Materialize.toast('Signed out successfully', 3000);
-			$rootScope.user_data = {};
-			$scope.$apply();
+			$scope.showToast('Signed out successfully');
+			$rootScope.user_data = {
+				permission: permissions.VISITOR
+			};
+			_.defer(function(){$scope.$apply();});
 		}, function(error) {
 		});
 	}
+	
+	$scope.showToast = function(message, timeout) {
+		$mdToast.show({
+			hideDelay: timeout || 2000,
+			position: 'top right',
+			locals:{ 
+				toastParams: {
+					message: message
+				}
+			},
+			controller: 'ToastController',
+			templateUrl: '/modules/common/templates/toast.html',
+			parent: document.getElementsByClassName('body-container')
+        });
+	}
+
+	$scope.tabs = angular.copy(anandmoghan.constants.tabs);
 
 	$scope.openNewTab = function(url) {
 		$window.open(url, '_blank');
@@ -43,34 +81,35 @@ anandmoghan.controller('MainController', ['$scope', '$state',  '$rootScope', '$h
 				email: user.email,
 				image: user.photoURL,
 				uid: user.uid,
-				is_email_verified: user.emailVerified,
-				isAdmin: false,
-				is_user_signed: true
+				permission: permissions.USER
 			}
-			$scope.$apply();
-			Materialize.toast('Signed in as '+$rootScope.user_data.name, 3000);
+			_.defer(function(){$scope.$apply();});
+			$scope.showToast('Signed in as '+$rootScope.user_data.name);
 			firebase.database().ref('isAdmin').on('value', function(data){
 				if(data.val()){
-					$rootScope.user_data.isAdmin = data.val();
-					$scope.$apply();
+					$rootScope.user_data.permission = permissions.ADMIN;
+					_.defer(function(){$scope.$apply();});
 				}	
 			});
-			var db_ref = firebase.database().ref('references/'+user.uid);
-	    	var info = {
+			var db_ref = firebase.database().ref('references').child(user.uid);
+			var info = {
 		      name: user.displayName,
+			  nickname: user.displayName,
 		      email: user.email,
-		      image: user.photoURL
+		      image_url: user.photoURL,
+			  uid: user.uid
 		    }
-		    db_ref.set(info);
+			db_ref.on('value', function(data){
+				if(!data.val()){
+					db_ref.set(info);
+					$rootScope.user_data.nickname = info.nickname;
+				}
+				else {
+					$rootScope.user_data.nickname = data.val().nickname;	
+				}
+				_.defer(function(){$scope.$apply();});
+				db_ref.off();
+			});
 		}
     })
-}]);
-
-anandmoghan.controller('HomeController', ['$scope', '$state', '$stateParams', '$rootScope', function($scope, $state, $stateParams, $rootScope){
-	$(window).resize();
-	$('title').html("Anand Mohan | Home");
-	$('.body-container').animate({scrollTop : 0}, 800);
-
-	$rootScope.bck_image = "connected.jpg";
-	$scope.$parent.current_tab = 'home';
 }]);

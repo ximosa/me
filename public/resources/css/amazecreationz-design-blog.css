@@ -1,30 +1,219 @@
+.blog-header {
+  width: 100%;
+  padding: 15px 15px 10px;
+  font-size: 20px;
+}
+
+.blog-loader {
+  width: 100%;
+  margin: 30px;
+}
+@media (max-width: 768px) {
+    .blog-loader {
+      width: auto;
+      margin: 20px;
+    }
+}
+/*Theming Classes Start*/
+.blog-bg-color {
+  background-color: #FAFAFA!important;/*body color*/
+  color: #666!important;
+}
+.blog-bg-transparent {
+  background-color: transparent!important;
+}
+.blog-bg-white {
+  background-color: #fff!important;
+}
+.blog-bg-green {
+  background-color: #5cb85c!important;/*green*/
+}
+.blog-bg-red {
+  background-color: #B71C1C!important;/*red*/
+  color: #FFCDD2!important;
+}
+.blog-bg-blue {
+  background-color: #337ab7!important;/*blue*/
+}
+.blog-bg-cyan {
+  background-color: #0097A7!important;/*cyan*/
+  color: #E0F7FA;/*cyan*/
+}
+.blog-bg-grey {
+  background-color: #424242!important;/*grey*/
+  color: #F5F5F5!important;/*grey*/
+}
+.blog-bg-yellow {
+  background-color: #CDDC39!important;/*yellow*/
+}
+.blog-text-blue {
+  color: #337ab7!important;/*blue*/
+}
+.blog-text-cyan {
+   color: #E0F7FA!important;/*cyan*/
+}
+.blog-text-red {
+  color: #d9534f!important;/*red*/
+}
+.blog-text-grey {
+  color: #424242!important;/*grey*/
+}
+.blog-text-black {
+  color: #000!important;/*black*/
+}
+.blog-text-light-blue {
+  color: #337ab7!important;/*blue*/
+}
+.blog-text-light-cyan {
+   color: #E0F7FA!important;/*cyan*/
+}
+.blog-text-light-red {
+  color: #FFCDD2!important;/*red*/
+}
+.blog-text-light-grey {
+  color: #F5F5F5!important;/*grey*/
+}
+/*Theming Classes End*/
+
+
+/*Container Classes Start*/
 .blog-container {
-    padding: 10px;
+  height: auto;
+  min-height: 100%;
+  overflow: hidden;
+  padding: 20px 10% 20px;
 }
 
-.post-header, .post-content, .post-view-content, .post-footer {
-    width: 100%;
+.blog-view-container {
+  padding: 0;
 }
 
-.post-header {
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
-    padding-bottom: 10px;
+.blog-side-container {
+  padding: 20px 0 10px 20px;
 }
 
-.post-content {
-    min-height: 100px;
-    max-height: 150px;
-    padding: 10px 5px;
+.blog-side-entry-container {
+  height: 250px;
+  padding: 10px;
 }
 
-.post-view-content {
-    min-height: 50vh;
-    padding: 10px 5px;
+.blog-posts-container {
+  padding: 20px 0 0 0;
 }
 
-.post-footer {
-    border-top: 1px solid #ccc;
-    margin-top: 10px;
-    padding-top: 10px;
+.blog-post-container {
+   padding: 15px;
 }
+.blog-post-container + .no-items {
+  display: none;
+  font-size: 16px;
+}
+.blog-new-post-container {
+  margin: 20px 0 0;
+  width: 100%;
+}
+.blog-new-post-section-container {
+  width: 50%;
+}
+@media (max-width: 768px) {
+    .blog-container {
+        padding: 10px;
+    }
+
+    .blog-posts-container {
+        padding: 20px 0px 0;
+    }
+    .blog-new-post-section-container {
+      width: 100%;
+    }
+}
+/*Container Classes End*/
+
+/*Posts Classes Start*/
+.blog-post-header {
+  font-size: 28px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+.blog-post-desc, .blog-post-content {
+  font-size: 16px;
+    
+}
+.blog-post-desc {
+  min-height: 80px;
+  margin: 10px 0;
+}
+.blog-post-content {
+  min-height: 50vh;
+  padding: 20px 0 10px;
+}
+.blog-post-details {
+  padding: 10px 0;
+}
+.blog-post-authors {
+  font-size: 14px;
+  color: #666;
+}
+.blog-post-author {
+  color: #444;
+}
+.blog-post-time {
+  font-size: 12px;
+  color: #888;
+}
+.blog-post-date-select {
+  margin: 0;
+}
+.blog-post-time-select {
+  margin: 0 0 10px 20px;
+}
+.blog-post-tags {
+  padding: 5px 0;
+}
+.blog-post-comments {
+  min-height: 50vh;
+  margin: 10px 0;
+  padding: 10px 0;
+  border-top: 1px solid #ccc;
+}
+.blog-post-button-footer {
+  border-top: 1px solid #ccc;
+  padding: 10px 0;
+  margin: 0 15px;
+}
+@media (max-width: 768px) {
+    .blog-post-header {
+        font-size: 20px;
+    }
+    .blog-post-desc, .blog-post-content {
+        font-size: 14px;
+    }
+}
+/*Posts Classes End*/
+
+
+/*General Classes Start*/
+.blog-pad-10 {
+  padding: 10px;
+}
+.blog-cursor-pointer {
+  cursor: pointer!important;
+}
+/*General Classes End*/
+
+/*Angular Material Workaround Start*/
+.md-blog-theme.md-whiteframe-2dp {
+  margin-bottom: 20px;
+}
+.md-chips {
+  box-shadow: none!important;
+  padding: 0;
+}
+.blog-header .md-select-value {
+  border-bottom: none!important;
+  margin-bottom: 3px;
+}
+.md-blog-theme:focus .md-select-value {
+  color: inherit!important;
+}
+/*Angular Material Workaround End*/

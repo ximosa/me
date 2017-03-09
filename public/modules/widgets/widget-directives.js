@@ -1,5 +1,39 @@
-anandmoghan.widgets = angular.module('anandmoghan.widgets' ,[])
+amazecreationz_widgets = angular.module('amazecreationz_widgets' ,[])
 
+amazecreationz_widgets.directive("bgLoad", [function() {
+    return {
+        restrict: "A",
+        scope: {
+            image: '='
+        },
+        link: function(scope, elements, attributes) {
+            scope.$watch('image', function(image){
+                var img_url = angular.isDefined(attributes.url) ? attributes.url+image : anandmoghan.globals.image.root_url+image;
+                var img = new Image();
+                img.src = img_url;
+                
+                img.onload = function() {
+                  $(elements[0]).css({'background-image':'url('+img.src+')'});
+                } 
+            });            
+        }
+    }
+}]);
+
+ amazecreationz_widgets.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, elements, attributes) {
+            var modelSetter = $parse(attributes.fileModel).assign;
+          
+            elements.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, elements[0].files[0]);
+                });
+            });
+        }
+    };
+ }]);
 
 /*
 widget: Loader Widget
@@ -8,7 +42,7 @@ data: Containes loader object {
 	status: Hidden state = 0, Show = 1
 }
 */
-anandmoghan.widgets.directive('loader', [function() {
+amazecreationz_widgets.directive('loader', [function() {
 	return {
 		restrict:'E',
 		scope: {
@@ -49,18 +83,35 @@ items: Items for Menu {
 	id: id of the item to call the changeFunction
 }
 itemSelected: selected menu item;
+scrollElement: scroll element for scroll to fix top action.
+scrollOffset: offset to fix the menu
 changeFunction: The function in the ctrl to be called for change in menu item.
 */
-anandmoghan.widgets.directive('menuBar', ['$state', function($state) {
+amazecreationz_widgets.directive('menuBar', ['$state', function($state) {
 	return {
 		restrict:'E',
 		scope: {
 			items: '=',
 			itemSelected: '=',
+			scrollElement: '@',
+			scrollOffset: '=',
 			function: '='
 		},
 		templateUrl: '/modules/widgets/menu-bar.html',
 		link: function (scope, elements, attributes) {
+			if(scope.scrollElement){
+				$('.menu-container').css(scope.scrollOffset);
+				$(scope.scrollElement).scroll(function() {
+					var menu_top = $('.menu-container').offset().top;
+					var body_top = $(scope.scrollElement).scrollTop();
+					if(body_top > menu_top) {
+						$('.menu-container').addClass('sticky box-shadow');
+					}
+					else {
+						$('.menu-container').removeClass('sticky box-shadow');
+					}
+				});
+			}
 		}
 	}
 }]);
@@ -70,7 +121,7 @@ anandmoghan.widgets.directive('menuBar', ['$state', function($state) {
 widget: Application Card
 app: Application Info Object
 */
-anandmoghan.widgets.directive('appCard', ['$state', function($state) {
+amazecreationz_widgets.directive('appCard', ['$state', function($state) {
 	return {
 		restrict:'E',
 		scope: {
@@ -92,7 +143,7 @@ anandmoghan.widgets.directive('appCard', ['$state', function($state) {
 widget: Tags
 tagdata: Tags Info Object
 */
-anandmoghan.widgets.directive('tags', ['$state', function($state) {
+amazecreationz_widgets.directive('tags', ['$state', function($state) {
 	return {
 		restrict:'E',
 		scope: {
@@ -113,7 +164,7 @@ widget: Get from Play Store
 link: playstore link
 height: (optional) height of image - default height: 30px
 */
-anandmoghan.widgets.directive('googlePlay', ['$state', function($state) {
+amazecreationz_widgets.directive('googlePlay', ['$state', function($state) {
 	return {
 		restrict:'E',
 		scope: {
@@ -145,7 +196,7 @@ anandmoghan.widgets.directive('googlePlay', ['$state', function($state) {
 widget: Crew Card
 crewInfo: Crew Info Object
 */
-anandmoghan.widgets.directive('crewCard', ['$state', function($state) {
+amazecreationz_widgets.directive('crewCard', ['$state', function($state) {
 	return {
 		restrict:'E',
 		scope: {
@@ -162,7 +213,7 @@ anandmoghan.widgets.directive('crewCard', ['$state', function($state) {
 widget: Chart Widget
 chartData: Chart Data Object
 */
-anandmoghan.widgets.directive('chart', ['$state', function($state) {
+amazecreationz_widgets.directive('chart', ['$state', function($state) {
 	return {
 		restrict:'E',
 		scope: {
